@@ -11,8 +11,8 @@ const GlobalStyle = createGlobalStyle`
      
      body {
         height: 100%;
-        background: #EFECE7;
-        color: var(--color-secondary);
+        background: var(--color-secondary);
+        color: var(--color-primary);
         margin: 0;
      }
 
