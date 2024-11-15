@@ -11,6 +11,9 @@ export default {
         secondary: "var(--color-secondary)",
         tertiary: "var(--color-tertiary)",
       },
+      fontFamily: {
+        anton: ["Anton", "sans-serif"],
+      },
     },
   },
   plugins: [],
