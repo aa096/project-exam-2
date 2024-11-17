@@ -6,9 +6,7 @@ export default function Footer() {
   return (
     <footer className="text-primary pt-20 md:pt-30 bg-[url('/assets/footer.webp')] bg-cover bg-no-repeat bg-[center_5%]">
       <div>
-        {/* Top Section */}
         <div className="flex justify-center items-start gap-8 py-4">
-          {/* Navigation Links */}
           <nav className="flex flex-col space-y-2">
             <NavLink
               to="/"
@@ -39,10 +37,8 @@ export default function Footer() {
             </NavLink>
           </nav>
 
-          {/* Vertical Divider */}
           <div className="border-r-[1.5px] border-primary h-28"></div>
 
-          {/* Social Icons */}
           <div className="flex flex-col space-y-2">
             <FontAwesomeIcon icon={faXTwitter} className="text-primary text-3xl hover:text-white" />
             <FontAwesomeIcon icon={faInstagram} className="text-primary text-3xl hover:text-white" />
@@ -50,7 +46,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Section */}
         <div className="text-center pb-3">
           <p className="text-sm mt-2">© {new Date().getFullYear()} Holidaze</p>
         </div>
