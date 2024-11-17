@@ -12,8 +12,8 @@ export default function Footer() {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "text-primary border-b-[1.5px] border-primary hover:text-white"
-                  : "text-primary hover:text-white"
+                  ? "text-primary border-b-[1.5px] border-primary hover:text-white font-montserrat"
+                  : "text-primary hover:text-white font-montserrat"
               }>
               Home
             </NavLink>
@@ -21,8 +21,8 @@ export default function Footer() {
               to="/venues"
               className={({ isActive }) =>
                 isActive
-                  ? "text-primary border-b-[1.5px] border-secondary hover:text-white"
-                  : "text-primary hover:text-white"
+                  ? "text-primary border-b-[1.5px] border-secondary hover:text-white font-montserrat"
+                  : "text-primary hover:text-white font-montserrat"
               }>
               Venues
             </NavLink>
@@ -30,8 +30,8 @@ export default function Footer() {
               to="/about"
               className={({ isActive }) =>
                 isActive
-                  ? "text-primary border-b-[1.5px] border-secondary hover:text-white"
-                  : "text-primary hover:text-white"
+                  ? "text-primary border-b-[1.5px] border-secondary hover:text-white font-montserrat"
+                  : "text-primary hover:text-white font-montserrat"
               }>
               About
             </NavLink>

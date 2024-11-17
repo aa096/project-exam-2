@@ -13,6 +13,7 @@ export default {
       },
       fontFamily: {
         anton: ["Anton", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
       },
     },
   },
