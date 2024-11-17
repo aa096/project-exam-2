@@ -6,7 +6,6 @@ const GlobalStyle = createGlobalStyle`
         --color-secondary: #F6F4F0;
         --color-tertiary: #D9C7AB;
         font-family: "Montserrat", sans-serif;
-        height: 100%;
         margin: 0;
      }
      
@@ -23,7 +22,13 @@ const GlobalStyle = createGlobalStyle`
     
     a {
         font-family: "SourceSans3", sans-serif;
-        font-weight: 390;
+        font-weight: 400;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:hover {
+        color: var(--color-tertiary)
     }
 
      main {

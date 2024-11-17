@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="bg-tertiary text-white text-center py-1.5">
+      <div className="bg-tertiary text-center py-1.5">
         <p className="text-sm">Free cancellations up to 24 hours before arrival</p>
       </div>
       <header className="w-full">
@@ -26,33 +26,51 @@ export default function Header() {
           <div className="flex justify-between items-center max-w-screen-xl relative">
             <div aria-hidden="true"></div>
             <div className="uppercase font-bold flex items-center">
-              <NavLink to="/" className="text-[20px] text-primary hidden md:flex md:items-center md:space-x-8">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 border-primary hidden md:flex md:items-center md:space-x-8"
+                    : "text-primary hidden md:flex md:items-center md:space-x-8"
+                }>
                 <FontAwesomeIcon icon={faHouse} className="mt-5" />
               </NavLink>
             </div>
             <div className="uppercase mt-4 flex items-center">
               <NavLink
                 to="/venues"
-                className="text-[20px] ml-auto text-primary hidden md:flex md:items-center md:space-x-8 uppercase">
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 border-primary hidden md:flex md:items-center md:space-x-8"
+                    : "text-primary hidden md:flex md:items-center md:space-x-8"
+                }>
                 Venues
               </NavLink>
             </div>
             <div className="uppercase mt-4 flex items-center">
-              <NavLink to="/">
+              <Link to="/">
                 <img src={HolidazeLogo} alt="Holidaze logo" className="w-[120px]" />
-              </NavLink>
+              </Link>
             </div>
             <div className="uppercase mt-4 flex items-center">
               <NavLink
                 to="/rent out"
-                className="text-[20px] ml-auto text-primary hidden md:flex md:items-center md:space-x-8 uppercase">
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 border-primary hidden md:flex md:items-center md:space-x-8"
+                    : "text-primary hidden md:flex md:items-center md:space-x-8"
+                }>
                 Rent Out
               </NavLink>
             </div>
             <div className="uppercase font-bold mt-4 flex items-center">
               <NavLink
                 to="/profile"
-                className="text-[20px] text-primary hidden md:flex md:items-center md:space-x-8 uppercase">
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-primary border-b-2 border-primary hidden md:flex md:items-center md:space-x-8"
+                    : "text-primary hidden md:flex md:items-center md:space-x-8"
+                }>
                 <FontAwesomeIcon icon={faUser} />
               </NavLink>
             </div>
@@ -78,18 +96,33 @@ export default function Header() {
               &times;
             </button>
             <div className="p-4">
-              <NavLink to="/" onClick={closeMenu} className="text-[20px] ml-auto text-primary">
+              <NavLink
+                to="/"
+                onClick={closeMenu}
+                className={({ isActive }) => (isActive ? "text-primary border-b-2 border-primary" : "text-primary")}>
                 <FontAwesomeIcon icon={faHouse} />
               </NavLink>
             </div>
-            <NavLink to="/venues" onClick={closeMenu} className="text-primary uppercase mb-3">
+            <NavLink
+              to="/venues"
+              onClick={closeMenu}
+              className={({ isActive }) =>
+                isActive ? "text-primary uppercase border-b-2 border-primary" : "text-primary uppercase"
+              }>
               Venues
             </NavLink>
-            <NavLink to="/venues" onClick={closeMenu} className="text-primary uppercase mb-3">
+            <NavLink
+              to="/venues"
+              onClick={closeMenu}
+              className={({ isActive }) =>
+                isActive ? "text-primary uppercase border-b-2 border-primary" : "text-primary uppercase"
+              }>
               Rent Out
             </NavLink>
             <div>
-              <NavLink to="/profile" className="text-[20px] ml-auto text-primary">
+              <NavLink
+                to="/profile"
+                className={({ isActive }) => (isActive ? "text-primary border-b-2 border-primary" : "text-primary")}>
                 <FontAwesomeIcon icon={faUser} />
               </NavLink>
             </div>
