@@ -1,21 +1,20 @@
-import { useState } from "react";
-import "../styles/App.css";
+import { Helmet } from "react-helmet";
+import { TopBanner } from "../components/templates";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div></div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <div>
+      <Helmet>
+        <title>Holidaze - Your One-Stop Online Shop</title>
+        <meta
+          name="description"
+          content="Discover a wide selection of products at AnyCart. Shop the latest trends in fashion, electronics, home goods, and more. Enjoy fast shipping and exceptional customer service. Start shopping today!"
+        />
+      </Helmet>
+      <main>
+        <TopBanner />
+      </main>
+    </div>
   );
 }
 

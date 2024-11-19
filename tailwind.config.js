@@ -15,7 +15,10 @@ export default {
         anton: ["Anton", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
       },
+      screens: {
+        sm: "500px",
+      },
     },
+    plugins: [],
   },
-  plugins: [],
 };
