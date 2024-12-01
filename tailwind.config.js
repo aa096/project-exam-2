@@ -18,6 +18,9 @@ export default {
       screens: {
         sm: "500px",
       },
+      boxShadow: {
+        "custom-card": "0px 20px 10px 0px rgba(0, 0, 0, 0.09)",
+      },
     },
     plugins: [],
   },
