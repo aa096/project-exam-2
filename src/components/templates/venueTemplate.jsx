@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faStar, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import venuePropTypes from "../venuePropTypes";
+import { getRandomLocation } from "./dummyLocation";
 
 const VenuesTemplate = ({ venues }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,7 +12,7 @@ const VenuesTemplate = ({ venues }) => {
     ...venue,
     location: {
       ...venue.location,
-      country: venue.location?.country || "Unknown",
+      country: venue.location?.country || getRandomLocation(),
     },
   }));
 
