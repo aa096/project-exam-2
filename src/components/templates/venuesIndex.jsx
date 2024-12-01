@@ -1,23 +1,13 @@
-import { useState } from "react";
 import VenueCard from "./VenueCard";
 import PaginationButtons from "../UI/PaginationButtons";
+import { useState } from "react";
+import venuePropTypes from "../venuePropTypes";
 import { getRandomLocation } from "./dummyLocation";
-import useVenues from "../../hooks/useVenues"; // Importer useVenues hooken
 
-const VenuesIndex = () => {
-  const { venues, loading, error } = useVenues(); // Bruk hooken til å hente venues
+const VenuesIndex = ({ venues }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  // Legg til dummy-lokasjon for hvert venue
   const formattedVenues = venues.map((venue) => ({
     ...venue,
     location: {
@@ -44,7 +34,7 @@ const VenuesIndex = () => {
     <section>
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-semibold uppercase mb-6 text-center">Explore Venues</h2>
-        <div className="flex justify-center flex-wrap gap-3">
+        <div className="flex justify-center flex-wrap gap-">
           {currentItems.map((venue) => (
             <VenueCard key={venue.id} venue={venue} />
           ))}
@@ -60,5 +50,7 @@ const VenuesIndex = () => {
     </section>
   );
 };
+
+VenuesIndex.propTypes = venuePropTypes;
 
 export default VenuesIndex;

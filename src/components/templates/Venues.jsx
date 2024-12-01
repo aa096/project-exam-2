@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useVenues } from "../../hooks";
+import useVenues from "../../hooks/useVenues";
 import VenueCard from "./VenueCard";
-import { ShowMoreButton } from "../UI";
+import ShowMoreBtn from "../UI/ShowMoreBtn";
 import plane from "/assets/fly.png";
 
 const VenuesPage = () => {
@@ -29,7 +29,7 @@ const VenuesPage = () => {
             <VenueCard key={venue.id} venue={venue} />
           ))}
         </div>
-        <ShowMoreButton onClick={handleShowMore} isVisible={visibleVenuesCount < venues.length} />
+        <ShowMoreBtn onClick={handleShowMore} isVisible={visibleVenuesCount < venues.length} />
       </div>
     </section>
   );

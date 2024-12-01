@@ -24,7 +24,6 @@ const PaginationButtons = ({ prevVenue, nextVenue, currentIndex, itemsPerPage, t
   );
 };
 
-// Legg til PropTypes for å validere props
 PaginationButtons.propTypes = {
   prevVenue: PropTypes.func.isRequired,
   nextVenue: PropTypes.func.isRequired,

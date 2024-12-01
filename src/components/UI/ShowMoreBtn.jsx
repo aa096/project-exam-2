@@ -14,7 +14,6 @@ const ShowMoreBtn = ({ onClick, isVisible }) => {
   );
 };
 
-// Legg til PropTypes for å validere props
 ShowMoreBtn.propTypes = {
   onClick: PropTypes.func.isRequired,
   isVisible: PropTypes.bool.isRequired,
