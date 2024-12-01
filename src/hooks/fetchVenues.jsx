@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { VENUES_URL } from "../API/constants";
-import VenuesTemplate from "../components/templates/venueTemplate";
+import VenuesIndex from "../components/templates/venuesIndex";
 
 const FetchVenues = () => {
   const [venues, setVenues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [visibleVenues, setVisibleVenues] = useState(4); // Start med å vise 4 kort
+  const [visibleVenues] = useState(4); // Start med å vise 4 kort
 
   useEffect(() => {
     const fetchVenues = async () => {
@@ -29,10 +29,6 @@ const FetchVenues = () => {
     fetchVenues();
   }, []);
 
-  const showMoreVenues = () => {
-    setVisibleVenues((prev) => prev + 4); // Legg til 4 flere kort
-  };
-
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -41,7 +37,7 @@ const FetchVenues = () => {
     return <div>Error: {error}</div>;
   }
 
-  return <VenuesTemplate venues={venues} visibleVenues={visibleVenues} showMoreVenues={showMoreVenues} />;
+  return <VenuesIndex venues={venues} visibleVenues={visibleVenues} />;
 };
 
 export default FetchVenues;
