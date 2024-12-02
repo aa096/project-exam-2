@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import { TopBanner } from "../components/templates";
-import FetchVenues from "../hooks/fetchVenues";
+import { VenuesIndex } from "../components/templates";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       </Helmet>
       <main className="container flex flex-wrap justify-center">
         <TopBanner />
-        <FetchVenues />
+        <VenuesIndex />
       </main>
     </div>
   );

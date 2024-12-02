@@ -4,4 +4,4 @@ import { dummyLocations } from "./dummyLocation";
 import VenuesIndex from "./venuesIndex";
 import VenuesPage from "./venues";
 
-export { TopBanner, VenueCard, dummyLocations, VenuesIndex, VenuesPage };
+export { TopBanner, VenueCard, dummyLocations, VenuesPage, VenuesIndex };

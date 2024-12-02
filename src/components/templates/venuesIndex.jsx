@@ -1,25 +1,25 @@
+import { useState } from "react";
 import VenueCard from "./VenueCard";
 import PaginationButtons from "../UI/PaginationButtons";
-import { useState } from "react";
-import venuePropTypes from "../venuePropTypes";
-import { getRandomLocation } from "./dummyLocation";
+import useVenues from "../../hooks/useVenues"; // Importer useVenues hooken
 
-const VenuesIndex = ({ venues }) => {
+const VenuesIndex = () => {
+  const { venues, loading, error } = useVenues(); // Bruk hooken til å hente venues
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 4;
+  const itemsPerPage = 4; // Antall elementer per side
 
-  const formattedVenues = venues.map((venue) => ({
-    ...venue,
-    location: {
-      ...venue.location,
-      country: venue.location?.country || getRandomLocation(),
-    },
-  }));
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  const currentItems = formattedVenues.slice(currentIndex, currentIndex + itemsPerPage);
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const currentItems = venues.slice(currentIndex, currentIndex + itemsPerPage);
 
   const nextVenue = () => {
-    if (currentIndex + itemsPerPage < formattedVenues.length) {
+    if (currentIndex + itemsPerPage < venues.length) {
       setCurrentIndex(currentIndex + itemsPerPage);
     }
   };
@@ -34,7 +34,7 @@ const VenuesIndex = ({ venues }) => {
     <section>
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-semibold uppercase mb-6 text-center">Explore Venues</h2>
-        <div className="flex justify-center flex-wrap gap-">
+        <div className="flex justify-center flex-wrap gap-3">
           {currentItems.map((venue) => (
             <VenueCard key={venue.id} venue={venue} />
           ))}
@@ -44,13 +44,11 @@ const VenuesIndex = ({ venues }) => {
           nextVenue={nextVenue}
           currentIndex={currentIndex}
           itemsPerPage={itemsPerPage}
-          totalItems={formattedVenues.length}
+          totalItems={venues.length}
         />
       </div>
     </section>
   );
 };
-
-VenuesIndex.propTypes = venuePropTypes;
 
 export default VenuesIndex;
