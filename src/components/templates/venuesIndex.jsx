@@ -4,6 +4,7 @@ import PaginationButtons from "../UI/PaginationButtons";
 import useVenues from "../../hooks/useVenues";
 
 const VenuesIndex = () => {
+  // Fjern searchQuery fra her
   const { venues, loading, error } = useVenues();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;

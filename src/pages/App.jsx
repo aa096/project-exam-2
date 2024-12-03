@@ -1,8 +1,15 @@
 import { Helmet } from "react-helmet";
+import { useState } from "react";
 import { TopBanner } from "../components/templates";
 import { VenuesIndex } from "../components/templates";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <div>
       <Helmet>
@@ -13,8 +20,8 @@ function App() {
         />
       </Helmet>
       <main className="container flex flex-wrap justify-center">
-        <TopBanner />
-        <VenuesIndex />
+        <TopBanner onSearch={handleSearch} />
+        <VenuesIndex searchQuery={searchQuery} />
       </main>
     </div>
   );
