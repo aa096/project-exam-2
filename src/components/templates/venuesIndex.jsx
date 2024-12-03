@@ -1,12 +1,12 @@
 import { useState } from "react";
 import VenueCard from "./VenueCard";
 import PaginationButtons from "../UI/PaginationButtons";
-import useVenues from "../../hooks/useVenues"; // Importer useVenues hooken
+import useVenues from "../../hooks/useVenues";
 
 const VenuesIndex = () => {
-  const { venues, loading, error } = useVenues(); // Bruk hooken til å hente venues
+  const { venues, loading, error } = useVenues();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 4; // Antall elementer per side
+  const itemsPerPage = 4;
 
   if (loading) {
     return <div>Loading...</div>;
