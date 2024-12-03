@@ -1,4 +1,3 @@
-// hooks/useVenues.js
 import { useState, useEffect } from "react";
 import { VENUES_URL } from "../API/constants";
 import { getRandomLocation } from "../components/templates/dummyLocation";
