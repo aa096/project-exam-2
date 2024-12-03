@@ -30,7 +30,6 @@ export default function TopBanner({ onSearch }) {
             className="border-[0.8px] rounded-full p-2 pl-12 text-primary border-primary placeholder:text-primary focus:border-primary focus:outline-none w-full"
             value={searchQuery}
             onChange={handleSearchChange}
-            placeholder="Search for venues..."
           />
         </div>
       </div>
