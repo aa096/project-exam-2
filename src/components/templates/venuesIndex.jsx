@@ -1,13 +1,22 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import VenueCard from "./VenueCard";
 import PaginationButtons from "../UI/PaginationButtons";
 import useVenues from "../../hooks/useVenues";
 
-const VenuesIndex = () => {
-  // Fjern searchQuery fra her
+const VenuesIndex = ({ searchQuery }) => {
   const { venues, loading, error } = useVenues();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
+
+  const filteredVenues = venues.filter((venue) => {
+    const location = venue.location || {};
+    const nameMatches = venue.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const cityMatches = location.city && location.city.toLowerCase().includes(searchQuery.toLowerCase());
+    const countryMatches = location.country && location.country.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return nameMatches || cityMatches || countryMatches;
+  });
 
   if (loading) {
     return <div>Loading...</div>;
@@ -17,10 +26,10 @@ const VenuesIndex = () => {
     return <div>Error: {error}</div>;
   }
 
-  const currentItems = venues.slice(currentIndex, currentIndex + itemsPerPage);
+  const currentItems = filteredVenues.slice(currentIndex, currentIndex + itemsPerPage);
 
   const nextVenue = () => {
-    if (currentIndex + itemsPerPage < venues.length) {
+    if (currentIndex + itemsPerPage < filteredVenues.length) {
       setCurrentIndex(currentIndex + itemsPerPage);
     }
   };
@@ -45,11 +54,15 @@ const VenuesIndex = () => {
           nextVenue={nextVenue}
           currentIndex={currentIndex}
           itemsPerPage={itemsPerPage}
-          totalItems={venues.length}
+          totalItems={filteredVenues.length}
         />
       </div>
     </section>
   );
+};
+
+VenuesIndex.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
 };
 
 export default VenuesIndex;

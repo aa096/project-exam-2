@@ -13,7 +13,7 @@ const PaginationButtons = ({ prevVenue, nextVenue, currentIndex, itemsPerPage, t
       </button>
       <button
         onClick={nextVenue}
-        className="px-6 py-2 disabled:bg-gray-300 disabled:pointer-events-none"
+        className="px-6 py-2 disabled:opacity-0 disabled:pointer-events-none"
         disabled={currentIndex + itemsPerPage >= totalItems}>
         <FontAwesomeIcon
           icon={faChevronRight}
