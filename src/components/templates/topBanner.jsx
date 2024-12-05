@@ -1,16 +1,15 @@
 import { useState } from "react";
-import PropTypes from "prop-types"; // Legg til importen av PropTypes
+import PropTypes from "prop-types";
 import topImage from "/assets/unsplash.webp";
 import plane from "/assets/fly2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlassLocation } from "@fortawesome/free-solid-svg-icons";
-
 export default function TopBanner({ onSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-    onSearch(event.target.value); // Kaller på onSearch
+    onSearch(event.target.value);
   };
 
   return (

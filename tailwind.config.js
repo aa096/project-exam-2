@@ -21,6 +21,9 @@ export default {
       boxShadow: {
         "custom-card": "0px 20px 10px 0px rgba(0, 0, 0, 0.09)",
       },
+      lineClamp: {
+        8: "8",
+      },
     },
     plugins: [],
   },

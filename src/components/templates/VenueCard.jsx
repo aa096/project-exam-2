@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const VenueCard = ({ venue }) => {
   const imageUrl =
@@ -9,7 +10,9 @@ const VenueCard = ({ venue }) => {
   const altText = venue?.media?.[0]?.alt || "Default Venue Image";
 
   return (
-    <div className="bg-white rounded-[20px] shadow-custom-card overflow-hidden px-3 pt-6 w-[290px] h-[430px] flex-shrink-0 flex flex-col mb-6">
+    <Link
+      to={`/venues/${venue.id}`}
+      className="bg-white rounded-[20px] shadow-custom-card overflow-hidden px-3 pt-6 w-[290px] h-[430px] flex-shrink-0 flex flex-col mb-6 no-underline">
       <img src={imageUrl} alt={altText} className="object-cover object-center w-[229px] h-[238px] mx-auto" />
       <div className="p-4 flex-grow">
         <div className="flex flex-wrap justify-between items-center gap-1">
@@ -29,7 +32,7 @@ const VenueCard = ({ venue }) => {
         <FontAwesomeIcon icon={faLocationDot} />
         <span>{venue.location.country}</span>
       </div>
-    </div>
+    </Link>
   );
 };
 
