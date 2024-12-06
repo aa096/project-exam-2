@@ -5,8 +5,9 @@ import BookingCalendar from "../UI/BookingCalender";
 import plane from "/assets/fly.png";
 import VenueInfo from "./VenueInfo";
 import { faWifi, faDog, faUtensils, faSquareParking } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
-const VenuePage = () => {
+const VenuePage = ({ setVenueName }) => {
   const { id } = useParams();
   const { venue, loading, error } = useVenue(id);
 
@@ -14,6 +15,8 @@ const VenuePage = () => {
   if (error) return <div>Error: {error}</div>;
 
   if (!venue) return <div>Venue details not found.</div>;
+
+  setVenueName(venue.name);
 
   const { name, location, media, meta, owner } = venue;
   const city = location?.city || getRandomLocation();
@@ -58,6 +61,10 @@ const VenuePage = () => {
       </div>
     </div>
   );
+};
+
+VenuePage.propTypes = {
+  setVenueName: PropTypes.func.isRequired,
 };
 
 export default VenuePage;
