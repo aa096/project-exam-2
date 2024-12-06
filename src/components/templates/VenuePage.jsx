@@ -13,6 +13,7 @@ import {
   faSquareParking,
   faBan,
 } from "@fortawesome/free-solid-svg-icons";
+import plane from "/assets/fly.png";
 
 const VenuePage = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const VenuePage = () => {
 
   if (!venue) return <div>Venue details not found.</div>;
 
-  const { name, description, location, media, maxGuests, price, rating, meta } = venue;
+  const { name, description, location, media, maxGuests, price, rating, meta, owner } = venue;
 
   const city = location?.city || getRandomLocation();
   const country = location?.country || getRandomLocation();
@@ -89,10 +90,20 @@ const VenuePage = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center mt-12">
-          <h4 className="mb-4 text-lg">Book </h4>
+        <h4 className="text-center mt-10 text-[20px] uppercase font-medium">Book {name}</h4>
+        <div className="flex justify-center">
           <BookingCalendar />
         </div>
+        <div className="flex justify-center items-center mt-4">
+          <img
+            src={owner?.avatar?.url || "/assets/default-avatar.png"}
+            alt={owner?.name || "Host Image"}
+            className="w-16 h-16 rounded-full border-4 border-[#F7F4F0] object-cover"
+          />
+          <span className="ml-3 text-xl">{owner?.name || "Host Name"} is the host</span>
+        </div>
+
+        <img src={plane} alt="plane icon flying to destination" className="mx-auto w-[300px] my-6" />
       </div>
     </div>
   );

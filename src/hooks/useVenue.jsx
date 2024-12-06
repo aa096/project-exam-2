@@ -9,9 +9,10 @@ const useVenue = (id) => {
   useEffect(() => {
     const fetchVenue = async () => {
       try {
-        const response = await fetch(`${VENUES_URL}/${id}`);
+        const response = await fetch(`${VENUES_URL}/${id}?_owner=true&_bookings=true`);
         const data = await response.json();
-        setVenue(data.data); // Pass kun `data`-delen av responsen
+
+        setVenue(data.data);
         setLoading(false);
       } catch (err) {
         setError(err.message || "An error occurred");
