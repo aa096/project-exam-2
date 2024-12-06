@@ -3,6 +3,7 @@ import { App } from "../pages";
 import Venues from "../pages/Venues";
 import { MainLayout } from "../layouts";
 import { Venue } from "../pages";
+import RegisterTemplate from "../components/templates/Register";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/venues/:id",
         element: <Venue />,
+      },
+      {
+        path: "/profile",
+        element: <RegisterTemplate />,
       },
     ],
   },
