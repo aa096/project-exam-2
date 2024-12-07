@@ -1,4 +1,5 @@
 import registerHolidaze from "/assets/holidaze2.png";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "../validationSchemas";
@@ -8,6 +9,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const RegisterTemplate = () => {
+  const navigate = useNavigate(); // Bruker useNavigate-hooken
+
   const {
     register,
     handleSubmit,
@@ -23,6 +26,10 @@ const RegisterTemplate = () => {
     } catch {
       toast.error("An error occurred");
     }
+  };
+
+  const goToLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -72,6 +79,15 @@ const RegisterTemplate = () => {
           />
           {errors.bio && <p className="text-[#F3676A]  text-sm">{errors.bio.message}</p>}
         </div>
+        <div>
+          <span>Already a Member? </span>
+          <button
+            type="button"
+            onClick={goToLogin}
+            className="text-primary uppercase underline font-semibold hover:text-tertiary ml-3">
+            Go to Login
+          </button>
+        </div>
 
         <div className="mb-4">
           <h2 className="uppercase font-medium my-2 text-lg">What kind of Holidazer are you? *</h2>
@@ -112,7 +128,6 @@ const RegisterTemplate = () => {
           </button>
         </div>
       </form>
-
       <ToastContainer />
     </div>
   );

@@ -3,7 +3,7 @@ import { App } from "../pages";
 import Venues from "../pages/Venues";
 import { MainLayout } from "../layouts";
 import { Venue } from "../pages";
-import RegisterTemplate from "../components/templates/Register";
+import RegisterPage from "../pages/Register";
 import LoginTemplate from "../components/templates/LoginTemplate";
 import ProfilePage from "../hooks/auth/profile";
 
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element: <RegisterTemplate />,
+        element: <RegisterPage />,
       },
       {
         path: "/login",

@@ -16,6 +16,10 @@ const LoginTemplate = () => {
     resolver: yupResolver(loginSchema),
   });
 
+  const goToRegister = () => {
+    navigate("/register");
+  };
+
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -53,10 +57,17 @@ const LoginTemplate = () => {
           />
           {errors.password && <p className="text-[#F3676A] text-sm">{errors.password.message}</p>}
         </div>
+        <span>Not a Member? </span>
+        <button
+          type="button"
+          onClick={goToRegister}
+          className="text-primary uppercase underline font-semibold hover:text-tertiary ml-3">
+          Sign up here
+        </button>
         <div className="flex">
           <button
             type="submit"
-            className="bg-primary mx-auto uppercase text-white px-4 py-1 rounded-full hover:bg-tertiary hover:text-primary transition">
+            className="bg-primary mx-auto uppercase text-white px-4 py-1 rounded-full hover:bg-tertiary hover:text-primary transition mt-3">
             Log In
           </button>
         </div>
