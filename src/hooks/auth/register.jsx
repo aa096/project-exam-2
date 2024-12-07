@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "../../API/constants";
 import { registrationSchema } from "../../components/validationSchemas";
+import { toast } from "react-toastify";
 
 export async function registerUser(profile) {
   const registerURL = `${API_BASE_URL}/auth/register`;
@@ -23,8 +24,15 @@ export async function registerUser(profile) {
     const result = await response.json();
     return result;
   } catch (error) {
-    console.error("Error during registration:", error);
+    toast.error(`Registration failed: ${error.message}`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
 
-    throw new Error(error.message || "Registration failed. Please try again.");
+    throw error;
   }
 }

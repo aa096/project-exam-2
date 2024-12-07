@@ -10,7 +10,6 @@ export default {
         primary: "var(--color-primary)",
         secondary: "var(--color-secondary)",
         tertiary: "var(--color-tertiary)",
-        error: "#F3676A",
       },
       fontFamily: {
         anton: ["Anton", "sans-serif"],

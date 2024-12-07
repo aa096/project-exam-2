@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faUser } from "@fortawesome/free-solid-svg-icons";
 import HolidazeLogo from "../../public/assets/Holidaze.png";
 
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -14,6 +14,16 @@ export default function Header() {
 
   const closeMenu = () => {
     setMenuOpen(false);
+  };
+
+  const handleProfileClick = () => {
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      navigate("/profile");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -30,7 +40,7 @@ export default function Header() {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-primary border-b-2 border-primary hidden md:flex md:items-center md:space-x-8"
+                    ? "text-primary border-b-2 border-tertiary hidden md:flex md:items-center md:space-x-8"
                     : "text-primary hidden md:flex md:items-center md:space-x-8"
                 }>
                 <FontAwesomeIcon icon={faHouse} className="mt-5" />
@@ -68,12 +78,14 @@ export default function Header() {
                 to="/profile"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-primary border-b-2 border-primary hidden md:flex md:items-center md:space-x-8"
+                    ? "text-primary border-b-2 border-tertiary hidden md:flex md:items-center md:space-x-8"
                     : "text-primary hidden md:flex md:items-center md:space-x-8"
-                }>
+                }
+                onClick={handleProfileClick}>
                 <FontAwesomeIcon icon={faUser} />
               </NavLink>
             </div>
+
             <div className="flex justify-end">
               <button
                 className="navbar-toggler focus:outline-none md:hidden mt-2"
@@ -122,6 +134,10 @@ export default function Header() {
             <div>
               <NavLink
                 to="/profile"
+                onClick={() => {
+                  closeMenu();
+                  handleProfileClick();
+                }}
                 className={({ isActive }) => (isActive ? "text-primary border-b-2 border-primary" : "text-primary")}>
                 <FontAwesomeIcon icon={faUser} />
               </NavLink>

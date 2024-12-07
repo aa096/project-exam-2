@@ -17,14 +17,12 @@ const RegisterTemplate = () => {
   });
 
   const onSubmit = async (data) => {
-    registerUser(data)
-      .then(() => {
-        toast.success("User registered successfully!");
-      })
-      .catch((error) => {
-        console.error("Registration failed:", error);
-        toast.error("Registration failed. Please try again.");
-      });
+    try {
+      await registerUser(data);
+      toast.success("User registered successfully!");
+    } catch {
+      toast.error("An error occurred");
+    }
   };
 
   return (
@@ -40,7 +38,7 @@ const RegisterTemplate = () => {
             placeholder="Username *"
             className="w-full border border-primary rounded-lg px-3 py-2 placeholder-primary focus:border-tertiary focus:outline-none"
           />
-          {errors.name && <p className="text-error text-sm mt-1">{errors.name.message}</p>}
+          {errors.name && <p className="text-[#F3676A] text-sm mt-1">{errors.name.message}</p>}
         </div>
 
         <div className="mb-4">
@@ -51,7 +49,7 @@ const RegisterTemplate = () => {
             placeholder="Email *"
             className="w-full border border-primary rounded-lg px-3 py-2 placeholder-primary focus:border-tertiary focus:outline-none"
           />
-          {errors.email && <p className="text-error text-sm">{errors.email.message}</p>}
+          {errors.email && <p className="text-[#F3676A]  text-sm">{errors.email.message}</p>}
         </div>
 
         <div className="mb-4">
@@ -62,7 +60,7 @@ const RegisterTemplate = () => {
             placeholder="Password *"
             className="w-full border border-primary rounded-lg px-3 py-2 placeholder-primary focus:border-tertiary focus:outline-none"
           />
-          {errors.password && <p className="text-error text-sm">{errors.password.message}</p>}
+          {errors.password && <p className="text-[#F3676A]  text-sm">{errors.password.message}</p>}
         </div>
 
         <div className="mb-4">
@@ -72,10 +70,9 @@ const RegisterTemplate = () => {
             placeholder="Bio (optional)"
             className="w-full border border-primary rounded-lg px-3 py-2 placeholder-primary focus:border-tertiary focus:outline-none"
           />
-          {errors.bio && <p className="text-error text-sm">{errors.bio.message}</p>}
+          {errors.bio && <p className="text-[#F3676A]  text-sm">{errors.bio.message}</p>}
         </div>
 
-        {/* Leie eller leie ut radio-knapper */}
         <div className="mb-4">
           <h2 className="uppercase font-medium my-2 text-lg">What kind of Holidazer are you? *</h2>
           <div className="flex items-center space-x-4">
@@ -88,9 +85,7 @@ const RegisterTemplate = () => {
                 className="mr-2 accent-primary focus:ring-tertiary"
               />
               <label htmlFor="rent" className="font-medium">
-                <label htmlFor="rent" className="font-medium">
-                  I&apos;m Looking to Rent
-                </label>
+                I&apos;m Looking to Rent
               </label>
             </div>
             <div>
@@ -102,14 +97,11 @@ const RegisterTemplate = () => {
                 className="mr-2 accent-primary focus:ring-tertiary"
               />
               <label htmlFor="rentOut" className="font-medium">
-                <label htmlFor="rent" className="font-medium">
-                  I&apos;m Looking to Rent Out
-                </label>
-                t
+                I&apos;m Looking to Rent Out
               </label>
             </div>
           </div>
-          {errors.rentOrRentOut && <p className="text-error text-sm">{errors.rentOrRentOut.message}</p>}
+          {errors.rentOrRentOut && <p className="text-[#F3676A]  text-sm">{errors.rentOrRentOut.message}</p>}
         </div>
 
         <div className="flex">
