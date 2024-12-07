@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "../../API/constants";
-import { registrationSchema } from "../../components/validationSchemas";
+import { registrationSchema } from "../../components/validation/validationSchemas";
 import { toast } from "react-toastify";
 
 export async function registerUser(profile) {

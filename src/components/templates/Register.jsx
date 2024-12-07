@@ -2,15 +2,14 @@ import registerHolidaze from "/assets/holidaze2.png";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registrationSchema } from "../validationSchemas";
+import { registrationSchema } from "../validation/validationSchemas";
 import { registerUser } from "../../hooks/auth";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const RegisterTemplate = () => {
-  const navigate = useNavigate(); // Bruker useNavigate-hooken
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -21,13 +20,17 @@ const RegisterTemplate = () => {
 
   const onSubmit = async (data) => {
     try {
-      await registerUser(data);
+      const updatedData = {
+        ...data,
+        venueManager: data.rentOrRentOut === "rentOut",
+      };
+
+      await registerUser(updatedData);
       toast.success("User registered successfully!");
     } catch {
       toast.error("An error occurred");
     }
   };
-
   const goToLogin = () => {
     navigate("/login");
   };

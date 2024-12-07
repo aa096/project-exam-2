@@ -64,7 +64,7 @@ export default function Header() {
             </div>
             <div className="uppercase mt-4 flex items-center">
               <NavLink
-                to="/rent out"
+                to="/rentout"
                 className={({ isActive }) =>
                   isActive
                     ? "text-primary border-b-2 border-primary hidden md:flex md:items-center md:space-x-8"
@@ -124,7 +124,7 @@ export default function Header() {
               Venues
             </NavLink>
             <NavLink
-              to="/venues"
+              to="/rentout"
               onClick={closeMenu}
               className={({ isActive }) =>
                 isActive ? "text-primary uppercase border-b-2 border-primary" : "text-primary uppercase"
