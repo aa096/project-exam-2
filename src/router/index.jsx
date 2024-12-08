@@ -5,7 +5,7 @@ import { MainLayout } from "../layouts";
 import { Venue } from "../pages";
 import RegisterPage from "../pages/Register";
 import LoginTemplate from "../components/templates/LoginTemplate";
-import ProfilePage from "../hooks/auth/profile";
+import ProfilePage from "../hooks/auth/profilePage";
 import RentOutPage from "../pages/RentOut";
 import UpdateProfilePage from "../pages/updateProfilePage";
 

@@ -13,10 +13,10 @@ function App() {
   return (
     <div>
       <Helmet>
-        <title>Holidaze - Your One-Stop Online Shop</title>
+        <title>Holidaze - Book Your Dream Stay</title>
         <meta
           name="description"
-          content="Discover a wide selection of products at AnyCart. Shop the latest trends in fashion, electronics, home goods, and more. Enjoy fast shipping and exceptional customer service. Start shopping today!"
+          content="Discover the best holiday venues on Holidaze. Book your dream stay at the perfect location with options for every budget and preference. Start planning your next getaway now!"
         />
       </Helmet>
       <main className="container flex flex-wrap justify-center">

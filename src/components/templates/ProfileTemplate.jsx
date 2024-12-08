@@ -21,28 +21,29 @@ const ProfileTemplate = ({ profileData }) => {
     navigate("/");
   };
 
-  const renderCard = (data, index) => (
-    <div key={data.id} className="flex flex-col md:flex-row gap-10 w-full p-4 rounded-lg m-4">
-      <img
-        src={venuesMedia[index] || "/assets/default-venue.jpg"}
-        alt={data.name || "Default venue image"}
-        className="w-48 h-48 object-cover object-center"
-      />
-      <div className="p-4 mt-5">
-        <h4 className="text-lg font-medium uppercase">{data.name}</h4>
-        <div>
-          <FontAwesomeIcon icon={faLocationDot} />
-          <span className="ml-2">{data.location.country}</span>
-          <FontAwesomeIcon icon={faStar} className="ml-6" /> <span> {data.rating} / 5 </span>
+  const renderCard = (data, index) => {
+    const venueName = data.venueName || "Unknown Venue";
+    const imageSrc = venuesMedia?.[index] || "/assets/default-venue.jpg";
+
+    return (
+      <div key={data.id} className="flex flex-col md:flex-row md:gap-10 w-full p-4 rounded-lg m-4">
+        <img src={imageSrc} alt={data.name || "Default venue image"} className="w-48 h-48 object-cover object-center" />
+        <div className="p-4 mt-5">
+          <h4 className="text-lg font-medium uppercase">{data.name}</h4>
+          <div>
+            <FontAwesomeIcon icon={faLocationDot} />
+            <span className="ml-2">{data.location.country}</span>
+            <FontAwesomeIcon icon={faStar} className="ml-6" /> <span> {data.rating} / 5 </span>
+          </div>
+          {venueManager ? (
+            <p className="text-sm uppercase mt-2">Bookings: {data._count?.bookings || 0}</p>
+          ) : (
+            <p className="text-sm">Booked Venue: {venueName}</p>
+          )}
         </div>
-        {venueManager ? (
-          <p className="text-sm uppercase mt-2">Bookings: {data._count?.bookings || 0}</p>
-        ) : (
-          <p className="text-sm">Booked Venue: {data.venueName || "Unknown venue"}</p>
-        )}
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div>
@@ -116,9 +117,12 @@ ProfileTemplate.propTypes = {
     bookings: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
-        venueName: PropTypes.string.isRequired,
+        venueName: PropTypes.string,
         image: PropTypes.string,
-        location: PropTypes.string,
+        location: PropTypes.shape({
+          country: PropTypes.string,
+          city: PropTypes.string,
+        }),
         rating: PropTypes.number,
       })
     ),
@@ -127,11 +131,14 @@ ProfileTemplate.propTypes = {
         id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         image: PropTypes.string,
-        location: PropTypes.string,
+        location: PropTypes.shape({
+          country: PropTypes.string,
+          city: PropTypes.string,
+        }).isRequired,
         rating: PropTypes.number,
       })
     ),
-    venuesMedia: PropTypes.arrayOf(PropTypes.string), // Array of media URLs
+    venuesMedia: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
 };
 
