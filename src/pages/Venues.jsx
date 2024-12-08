@@ -1,4 +1,4 @@
-import VenuesPage from "../components/templates/venues";
+import VenuesPage from "../components/templates/VenuesPage";
 import { Helmet } from "react-helmet";
 
 function Venues() {
