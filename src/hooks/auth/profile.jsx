@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PROFILES_URL, API_KEY } from "../../API/constants";
+import { fetchProfileData } from "./fetchProfile";
 import ProfileTemplate from "../../components/templates/ProfileTemplate";
 
 const ProfilePage = () => {
@@ -16,36 +16,19 @@ const ProfilePage = () => {
       return;
     }
 
-    const fetchProfileData = async () => {
+    const fetchData = async () => {
       try {
-        const url = `${PROFILES_URL}/${user.name}`;
-        const headers = {
-          Authorization: `Bearer ${token}`,
-          "X-Noroff-API-Key": API_KEY,
-        };
-
-        const response = await fetch(url, {
-          method: "GET",
-          headers: headers,
-        });
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch profile data. Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        setProfileData(data.data);
+        const data = await fetchProfileData(user, token);
+        setProfileData(data);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching profile data:", error);
         setIsLoading(false);
+        console.error("Error fetching profile data:", error);
       }
     };
 
-    fetchProfileData();
+    fetchData();
   }, []);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }

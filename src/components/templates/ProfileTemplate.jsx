@@ -43,7 +43,7 @@ const ProfileTemplate = ({ profileData }) => {
 ProfileTemplate.propTypes = {
   profileData: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    email: PropTypes.string,
     bio: PropTypes.string.isRequired,
     avatar: PropTypes.shape({
       url: PropTypes.string.isRequired,

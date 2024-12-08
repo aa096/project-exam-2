@@ -7,6 +7,7 @@ import RegisterPage from "../pages/Register";
 import LoginTemplate from "../components/templates/LoginTemplate";
 import ProfilePage from "../hooks/auth/profile";
 import RentOutPage from "../pages/RentOut";
+import UpdateProfilePage from "../pages/updateProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/rentout",
         element: <RentOutPage />,
+      },
+      {
+        path: "/updateprofile",
+        element: <UpdateProfilePage />,
       },
     ],
   },
