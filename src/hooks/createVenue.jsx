@@ -28,7 +28,6 @@ export async function createVenue(venueData) {
     }
 
     const responseData = await response.json();
-    console.log("Venue created successfully:", responseData);
     return responseData;
   } catch (error) {
     console.error("Fetch Error:", error.message);
