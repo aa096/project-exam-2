@@ -10,7 +10,7 @@ const VenueInfo = ({ venue, city, country, imageUrl, imageAlt, metaInfo }) => (
       className="md:w-[400px] md:h-[500px] rounded-[20px] lg:-mt-14 lg:-ms-10 -mt-14 mx-auto object-cover object-center"
     />
     <div className="lg:max-w-lg xl:max-w-xl">
-      <div className="flex gap-3 uppercase md:-mt-40">
+      <div className="flex gap-3 uppercase ">
         <FontAwesomeIcon icon={faLocationDot} className="mt-1 text-lg" /> {city}, {country}
       </div>
       <p className="break-words line-clamp-8 mt-5">{venue.description}</p>
