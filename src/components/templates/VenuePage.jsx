@@ -1,16 +1,21 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useVenue from "../../hooks/useVenue";
+import { deleteVenue } from "../../hooks/deleteVenue";
 import { getRandomLocation } from "./dummyLocation";
 import BookingCalendar from "../BookingCalender";
 import plane from "/assets/fly.png";
 import VenueInfo from "./VenueInfo";
-import { faWifi, faDog, faUtensils, faSquareParking } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWifi, faDog, faUtensils, faSquareParking, faTrash } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 
 const VenuePage = ({ setVenueName }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { venue, loading, error } = useVenue(id);
+
+  const currentUser = JSON.parse(localStorage.getItem("user")); 
 
   useEffect(() => {
     if (venue?.name) {
@@ -42,6 +47,19 @@ const VenuePage = ({ setVenueName }) => {
     endDate: new Date(booking.endDate),
   }));
 
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this venue?");
+    if (!confirmDelete) return;
+
+    try {
+      await deleteVenue(id); 
+      setIsDeleted(true); 
+      navigate("/")
+    } catch (error) {
+      console.error("Error deleting venue:", error);
+    }
+  };
+
   return (
     <div>
       <h1 className="text-4xl font-medium text-center uppercase mt-6 mb-16">{name}</h1>
@@ -66,6 +84,15 @@ const VenuePage = ({ setVenueName }) => {
           />
           <span className="ml-3 text-xl">{owner?.name || "Host Name"} is the host</span>
         </div>
+        {currentUser?.name === owner?.name && (
+          <div className="flex justify-center mt-6 gap-4">
+            <button
+              className="bg-primary text-white px-4 py-2 rounded-xl hover:bg-tertiary transition"
+              onClick={handleDelete}> <FontAwesomeIcon icon={faTrash} className="mr-2" />
+              Delete Venue
+            </button>
+          </div>
+        )}
         <img src={plane} alt="plane icon flying to destination" className="mx-auto w-[300px] my-6" />
       </div>
     </div>
