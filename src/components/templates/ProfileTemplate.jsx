@@ -4,15 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
-// Logout funksjon
 const logout = () => {
-  // Fjerne token og user fra localStorage
   localStorage.removeItem("token");
   localStorage.removeItem("user");
 };
 
 const ProfileTemplate = ({ profileData }) => {
-  const navigate = useNavigate(); // Bruke useNavigate for å navigere programmatisk
+  const navigate = useNavigate();
 
   if (!profileData) return <div>Loading...</div>;
 
@@ -20,7 +18,7 @@ const ProfileTemplate = ({ profileData }) => {
 
   const handleLogout = () => {
     logout();
-    navigate("/"); // Naviger til startsiden etter logout
+    navigate("/");
   };
 
   return (
