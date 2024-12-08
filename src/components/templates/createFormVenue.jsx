@@ -52,7 +52,7 @@ const CreateVenueForm = () => {
           <textarea
             placeholder="Description *"
             {...register("description")}
-            className="w-full border border-primary rounded-lg px-3 py-2 placeholder-primary"
+            className="w-full h-32 border border-primary rounded-lg px-3 py-2 placeholder-primary"
           />
           {errors.description && <p className="text-[#F3676A] text-sm">{errors.description.message}</p>}
         </div>

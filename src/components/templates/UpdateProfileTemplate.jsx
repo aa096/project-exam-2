@@ -79,7 +79,7 @@ const UpdateProfile = () => {
           <textarea
             id="bio"
             {...register("bio")}
-            className="w-full border border-primary rounded-lg px-3 py-2 focus:border-tertiary focus:outline-none"
+            className="w-full h-32 border border-primary rounded-lg px-3 py-2 focus:border-tertiary focus:outline-none"
           />
           {errors.bio && <p className="text-[#F3676A] text-sm mt-1">{errors.bio.message}</p>}
         </div>
