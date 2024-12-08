@@ -5,8 +5,8 @@ function UpdateProfilePage() {
   return (
     <div>
       <Helmet>
-        <title>Holidaze - </title>
-        <meta name="description" content="" />
+        <title>Update your Profile - Holidaze - </title>
+        <meta name="description" content="Update your personal details and preferences on Holidaze. Keep your information up-to-date for a personalized travel experience." />
       </Helmet>
       <main className="container flex flex-wrap justify-center">
         <UpdateProfile />

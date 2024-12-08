@@ -8,6 +8,7 @@ import LoginTemplate from "../components/templates/LoginTemplate";
 import ProfilePage from "../hooks/auth/profilePage";
 import RentOutPage from "../pages/RentOut";
 import UpdateProfilePage from "../pages/updateProfilePage";
+import Profile from "../pages/profile";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <ProfilePage />,
+        element: <Profile />,
       },
       {
         path: "/rentout",

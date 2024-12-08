@@ -5,8 +5,8 @@ function Venues() {
   return (
     <div>
       <Helmet>
-        <title>Holidaze - </title>
-        <meta name="description" content="" />
+        <title>Explore Venues | Holidaze</title>
+        <meta name="description" content="Discover unique venues on Holidaze. Find the perfect place to stay for your next holiday, from cozy cottages to luxurious villas." />
       </Helmet>
       <main className="container flex flex-wrap justify-center">
         <VenuesPage />
