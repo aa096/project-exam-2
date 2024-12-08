@@ -26,13 +26,7 @@ export default function Footer() {
               }>
               Venues
             </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-primary border-b-[1.5px] border-secondary hover:text-white font-montserrat"
-                  : "text-primary hover:text-white font-montserrat"
-              }>
+            <NavLink to="" className="aria-hidden">
               About
             </NavLink>
           </nav>

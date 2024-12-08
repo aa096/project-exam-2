@@ -16,10 +16,6 @@ const ProfileTemplate = ({ profileData }) => {
 
   const { name, bio, avatar, banner, venueManager, bookings, venues, venuesMedia } = profileData;
 
-  console.log("Profile Data:", profileData);
-  console.log("Venues:", venues);
-  console.log("Bookings:", bookings);
-
   const handleLogout = () => {
     logout();
     navigate("/");

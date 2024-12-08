@@ -4,6 +4,7 @@ import GuestSelector from "./UI/GuestSelector";
 import BookingButton from "./UI/BookingButton";
 import { BOOKINGS_URL, API_KEY } from "../API/constants";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 const BookingCalendar = ({ venueId, maxGuests }) => {
   const [dates, setDates] = useState([null, null]);
@@ -14,6 +15,7 @@ const BookingCalendar = ({ venueId, maxGuests }) => {
   const [bookingDetails, setBookingDetails] = useState(null);
 
   const token = localStorage.getItem("token");
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -97,13 +99,25 @@ const BookingCalendar = ({ venueId, maxGuests }) => {
     }
   };
 
+  // Redirect to login if not logged in
+  const handleLoginRedirect = () => {
+    navigate("/login"); // Use navigate instead of history.push
+  };
+
   return (
     <div className="flex flex-col items-center p-6 w-full max-w-md">
-      <GuestSelector guests={guests} setGuests={setGuests} maxGuests={maxGuests} />
-      <CalendarDisplay dates={dates} setDates={setDates} bookedDates={bookedDates} />
-      <BookingButton handleBooking={handleBooking} loading={loading} />
-
-      {bookingDetails && message && <p className="mt-4 text-center">{message}</p>}
+      {token ? (
+        <>
+          <GuestSelector guests={guests} setGuests={setGuests} maxGuests={maxGuests} />
+          <CalendarDisplay dates={dates} setDates={setDates} bookedDates={bookedDates} />
+          <BookingButton handleBooking={handleBooking} loading={loading} />
+          {bookingDetails && message && <p className="mt-4 text-center">{message}</p>}
+        </>
+      ) : (
+        <button onClick={handleLoginRedirect} className="bg-primary text-white px-2 py-1 rounded-xl mt-3">
+          Login to book
+        </button>
+      )}
     </div>
   );
 };

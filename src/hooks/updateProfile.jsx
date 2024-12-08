@@ -1,8 +1,6 @@
 import { PROFILES_URL, API_KEY } from "../API/constants";
 
 export async function updateProfile(profile) {
-  console.log("Profile object:", profile);
-
   const token = localStorage.getItem("token");
 
   if (!profile.name) {
