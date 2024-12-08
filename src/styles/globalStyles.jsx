@@ -44,6 +44,21 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         max-width: 100%
     }
+
+    .react-calendar {
+        background-color: #F7F4F0;
+        border: none;
+    }
+
+    .react-calendar__tile--active {
+    background-color: #d9c7ab ;
+    }
+
+    .react-calendar__tile:disabled {
+    background-color: #E7E0D8;
+    color: #BCA99A;
+    cursor: not-allowed;
+    }
 `;
 
 export default GlobalStyle;

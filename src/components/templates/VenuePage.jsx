@@ -1,24 +1,28 @@
 import { useParams } from "react-router-dom";
 import useVenue from "../../hooks/useVenue";
 import { getRandomLocation } from "./dummyLocation";
-import BookingCalendar from "../UI/BookingCalender";
+import BookingCalendar from "../BookingCalender";
 import plane from "/assets/fly.png";
 import VenueInfo from "./VenueInfo";
 import { faWifi, faDog, faUtensils, faSquareParking } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 const VenuePage = ({ setVenueName }) => {
   const { id } = useParams();
   const { venue, loading, error } = useVenue(id);
 
+  useEffect(() => {
+    if (venue?.name) {
+      setVenueName(venue.name);
+    }
+  }, [venue, setVenueName]);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
   if (!venue) return <div>Venue details not found.</div>;
 
-  setVenueName(venue.name);
-
-  const { name, location, media, meta, owner } = venue;
+  const { name, location, media, meta, owner, bookings } = venue;
   const city = location?.city || getRandomLocation();
   const country = location?.country || getRandomLocation();
 
@@ -32,6 +36,11 @@ const VenuePage = ({ setVenueName }) => {
     { label: "Breakfast", value: meta?.breakfast, icon: faUtensils },
     { label: "Parking", value: meta?.parking, icon: faSquareParking },
   ];
+
+  const bookedDates = bookings.map((booking) => ({
+    startDate: new Date(booking.startDate),
+    endDate: new Date(booking.endDate),
+  }));
 
   return (
     <div>
@@ -47,7 +56,7 @@ const VenuePage = ({ setVenueName }) => {
         />
         <h4 className="text-center mt-10 text-[20px] uppercase font-medium">Book {name}</h4>
         <div className="flex justify-center">
-          <BookingCalendar />
+          <BookingCalendar venueId={id} maxGuests={venue.maxGuests} bookedDates={bookedDates} />
         </div>
         <div className="flex justify-center items-center mt-4">
           <img
