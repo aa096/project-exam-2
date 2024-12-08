@@ -60,7 +60,9 @@ const UpdateProfile = () => {
     try {
       await updateProfile(updatedData);
       toast.success("Profile updated successfully!");
-      navigate("/profile");
+      setTimeout(() => {
+        navigate("/profile");
+      }, 2000);
     } catch (error) {
       toast.error("An error occurred while updating the profile.", error);
     }
