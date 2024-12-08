@@ -14,6 +14,7 @@ export default {
       fontFamily: {
         anton: ["Anton", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
+        sourceSans: ["SourceSans3", "sans-serif"],
       },
       screens: {
         sm: "500px",

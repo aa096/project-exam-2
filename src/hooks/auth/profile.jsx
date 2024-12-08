@@ -30,11 +30,11 @@ const ProfilePage = () => {
     fetchData();
   }, []);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="text-center mt-4">Loading...</div>;
   }
 
   if (!profileData) {
-    return <div>No profile data available</div>;
+    return <div className="text-center mt-4">No profile data available</div>;
   }
 
   return <ProfileTemplate profileData={profileData} />;

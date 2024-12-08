@@ -1,10 +1,27 @@
 import plane from "/assets/fly.png";
 import PropTypes from "prop-types";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+
+// Logout funksjon
+const logout = () => {
+  // Fjerne token og user fra localStorage
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+};
 
 const ProfileTemplate = ({ profileData }) => {
+  const navigate = useNavigate(); // Bruke useNavigate for å navigere programmatisk
+
   if (!profileData) return <div>Loading...</div>;
 
   const { name, bio, avatar, banner, venueManager } = profileData;
+
+  const handleLogout = () => {
+    logout();
+    navigate("/"); // Naviger til startsiden etter logout
+  };
 
   return (
     <div>
@@ -18,13 +35,27 @@ const ProfileTemplate = ({ profileData }) => {
           />
         )}
         <div className="flex flex-col md:flex-row">
-          <img
-            src={avatar?.url || "/assets/default-avatar.png"}
-            alt={avatar?.alt || "Profile Avatar"}
-            className="w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full object-cover lg:-mt-18 -mt-28 mx-auto md:mx-0 object-center"
-          />
+          <div className="flex flex-col">
+            <img
+              src={avatar?.url || "/assets/default-avatar.png"}
+              alt={avatar?.alt || "Profile Avatar"}
+              className="w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full object-cover lg:-mt-18 md:-ml-2 -mt-28 mx-auto md:mx-0 object-center"
+            />
+            <Link to="/updateprofile">
+              <button className="flex items-center mx-auto uppercase mt-4 text-primary border-none hover:text-tertiary transition">
+                <FontAwesomeIcon icon={faPenToSquare} className="mr-2" /> Edit profile
+              </button>
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="flex items-center mx-auto uppercase mt-2 mb-3 border-none hover:text-tertiary transition font-sourceSans">
+              <FontAwesomeIcon icon={faRightFromBracket} className="mr-2" /> Log out
+            </button>
+          </div>
           <div className="flex flex-col mt-5 mx-auto">
-            <h2 className="uppercase text-xl font-medium">{venueManager ? "Venue Manager" : "Holidaze Booker"}</h2>
+            <h2 className="uppercase text-xl font-medium text-center">
+              {venueManager ? "Venue Manager" : "Holidaze Booker"}
+            </h2>
             <p className="break-words line-clamp-8 mt-5">{bio || "No bio available"}</p>
           </div>
         </div>

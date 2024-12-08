@@ -20,8 +20,10 @@ export default function Header() {
     const user = localStorage.getItem("user");
 
     if (user) {
+      // Hvis brukeren er logget inn, naviger til profil-siden
       navigate("/profile");
     } else {
+      // Hvis brukeren ikke er logget inn, naviger til login-siden
       navigate("/login");
     }
   };
@@ -74,16 +76,11 @@ export default function Header() {
               </NavLink>
             </div>
             <div className="uppercase font-bold mt-4 flex items-center">
-              <NavLink
-                to="/profile"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-primary border-b-2 border-tertiary hidden md:flex md:items-center md:space-x-8"
-                    : "text-primary hidden md:flex md:items-center md:space-x-8"
-                }
-                onClick={handleProfileClick}>
+              <button
+                onClick={handleProfileClick} // Bruker knapp i stedet for NavLink
+                className="text-primary hidden md:flex md:items-center md:space-x-8">
                 <FontAwesomeIcon icon={faUser} />
-              </NavLink>
+              </button>
             </div>
 
             <div className="flex justify-end">
@@ -132,15 +129,14 @@ export default function Header() {
               Rent Out
             </NavLink>
             <div>
-              <NavLink
-                to="/profile"
+              <button
                 onClick={() => {
                   closeMenu();
                   handleProfileClick();
                 }}
-                className={({ isActive }) => (isActive ? "text-primary border-b-2 border-primary" : "text-primary")}>
+                className="text-primary">
                 <FontAwesomeIcon icon={faUser} />
-              </NavLink>
+              </button>
             </div>
           </div>
 
