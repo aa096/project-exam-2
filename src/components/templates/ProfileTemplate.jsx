@@ -2,7 +2,7 @@ import plane from "/assets/fly.png";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faRightFromBracket, faLocationDot, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const logout = () => {
   localStorage.removeItem("token");
@@ -14,12 +14,39 @@ const ProfileTemplate = ({ profileData }) => {
 
   if (!profileData) return <div>Loading...</div>;
 
-  const { name, bio, avatar, banner, venueManager } = profileData;
+  const { name, bio, avatar, banner, venueManager, bookings, venues, venuesMedia } = profileData;
+
+  console.log("Profile Data:", profileData);
+  console.log("Venues:", venues);
+  console.log("Bookings:", bookings);
 
   const handleLogout = () => {
     logout();
     navigate("/");
   };
+
+  const renderCard = (data, index) => (
+    <div key={data.id} className="flex flex-col md:flex-row gap-10 w-full p-4 rounded-lg m-4">
+      <img
+        src={venuesMedia[index] || "/assets/default-venue.jpg"}
+        alt={data.name || "Default venue image"}
+        className="w-48 h-48 object-cover object-center"
+      />
+      <div className="p-4 mt-5">
+        <h4 className="text-lg font-medium uppercase">{data.name}</h4>
+        <div>
+          <FontAwesomeIcon icon={faLocationDot} />
+          <span className="ml-2">{data.location.country}</span>
+          <FontAwesomeIcon icon={faStar} className="ml-6" /> <span> {data.rating} / 5 </span>
+        </div>
+        {venueManager ? (
+          <p className="text-sm uppercase mt-2">Bookings: {data._count?.bookings || 0}</p>
+        ) : (
+          <p className="text-sm">Booked Venue: {data.venueName || "Unknown venue"}</p>
+        )}
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -58,10 +85,18 @@ const ProfileTemplate = ({ profileData }) => {
           </div>
         </div>
         <div className="flex justify-center mt-7">
-          <h3 className="mt-5 text-lg font-medium uppercase mb-6">{venueManager ? "Your Venues" : "Your Bookings"}</h3>
+          <h3 className="mt-5 text-[22px] font-medium uppercase mb-6">
+            {venueManager ? "Your Venues" : "Your Bookings"}
+          </h3>
         </div>
-        <div className="flex justify-center p-8 mx-16 bg-[#F7F4F0]">
-          <p>loren</p>
+        <div className="flex flex-wrap justify-center p-8 mx-16 bg-[#F7F4F0]">
+          {venues?.length > 0 ? (
+            venues.map(renderCard)
+          ) : bookings?.length > 0 ? (
+            bookings.map(renderCard)
+          ) : (
+            <p>No data to display</p>
+          )}
         </div>
         <img src={plane} alt="plane icon flying to destination" className="mx-auto w-[300px] my-6" />
       </div>
@@ -72,17 +107,35 @@ const ProfileTemplate = ({ profileData }) => {
 ProfileTemplate.propTypes = {
   profileData: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    email: PropTypes.string,
     bio: PropTypes.string.isRequired,
     avatar: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      alt: PropTypes.string.isRequired,
-    }).isRequired,
+      url: PropTypes.string,
+      alt: PropTypes.string,
+    }),
     banner: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      alt: PropTypes.string.isRequired,
-    }).isRequired,
+      url: PropTypes.string,
+      alt: PropTypes.string,
+    }),
     venueManager: PropTypes.bool.isRequired,
+    bookings: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        venueName: PropTypes.string.isRequired,
+        image: PropTypes.string,
+        location: PropTypes.string,
+        rating: PropTypes.number,
+      })
+    ),
+    venues: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        image: PropTypes.string,
+        location: PropTypes.string,
+        rating: PropTypes.number,
+      })
+    ),
+    venuesMedia: PropTypes.arrayOf(PropTypes.string), // Array of media URLs
   }).isRequired,
 };
 

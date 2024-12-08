@@ -50,7 +50,7 @@ const VenuesIndex = ({ searchQuery }) => {
           <div className="text-center">
             <p>No venues match your search</p>
             <button
-              onClick={() => navigate("/venues")} // Naviger til /venues
+              onClick={() => navigate("/venues")}
               className="mt-6 bg-primary uppercase text-sm text-white py-2 px-4 rounded-full">
               View All Venues
             </button>
