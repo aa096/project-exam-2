@@ -1,8 +1,8 @@
 # Project Exam 2 - Holidaze Booking Website
 
-## Overview
+![image](public/assets/Holidazedesk.png)
 
-**Holidaze** is a holiday venue booking website built using **React**, **Vite**, and **Tailwind CSS**. The platform allows users to search for, book, and manage holiday stays across various destinations. The project showcases user profiles, venue details, and booking management for both customers and venue managers.
+**Holidaze** is a holiday venue booking website built using **React**, **Vite**, and **Tailwind CSS**. The platform allows users to search for, book, and manage holiday stays across various destinations. The project showcases user profiles, venue details, and booking management for both customers and venue managers..
 
 ## Features
 
@@ -12,6 +12,7 @@
 - **Search Functionality**: A search bar allows users to filter available venues by different criteria.
 - **Responsive Design**: The website is fully responsive and optimized for both desktop and mobile devices.
 
+
 ## Technologies Used
 
 - **Frontend**: React, Vite
@@ -19,6 +20,24 @@
 - **Icons**: Font Awesome
 - **Routing**: React Router
 - **Form Handling**: React Hook Form, Yup (for validation)
+
+## Getting Started
+
+### Installing
+
+This is where you list how to get the project started. It typically just includes telling a person to clone the repo and then to install the dependencies e.g.
+
+1. Clone the repo:
+
+```bash
+git clone git@github.com:NoroffFEU/portfolio-1-example.git
+```
+
+2. Install the dependencies:
+
+```
+npm install
+```
 
 ## Installation
 
@@ -45,3 +64,8 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Contact
+
+[My LinkedIn page](https://www.linkedin.com/in/aashild-l-rasmussen/)
+
